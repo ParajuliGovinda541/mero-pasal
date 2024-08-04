@@ -22,12 +22,10 @@
 
         </thead>
         <tbody>
-            @php
-            $sn=1
-        @endphp
+
             @foreach($brands as $brand)
             <tr>
-                <td>{{$sn++}}</td>
+                <td>{{$loop->iteration}}td>
 
 
                 <td>{{$brand->name}}</td>

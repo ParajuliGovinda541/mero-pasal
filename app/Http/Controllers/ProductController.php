@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -16,10 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Category::join('products','categories.id','=','products.categories_id')->get();
-        
-        //  dd($products);
-
+        $products = Product::join('categories', 'categories.id', '=', 'products.categories_id')
+        ->join('brands', 'brands.id', '=', 'products.brand_id')
+        ->get();
         return view('admin.product.index',compact('products'));
     }
 
@@ -29,8 +29,9 @@ class ProductController extends Controller
     public function create()
     {
         $allcategory = Category::all();
-        return view('admin.product.create',compact('allcategory'));
-        
+        $brands = Brand::all();
+        return view('admin.product.create',compact('allcategory','brands'));
+
     }
 
     /**
@@ -48,7 +49,7 @@ class ProductController extends Controller
 
             'image_url'=>'required|mimes:jpeg,png,jpg',
             'quantity'=>'required|numeric'
-            
+
 
         ]);
         $data=[
@@ -57,7 +58,9 @@ class ProductController extends Controller
             'price'=>$request['price'],
             'image_url'=>$request['image_url'],
             'quantity'=>$request['quantity'],
-            'categories_id'=>$request['categories_id']
+            'categories_id'=>$request['categories_id'],
+            'brand_id'=>$request['brand_id']
+
 
 
 
@@ -70,32 +73,32 @@ class ProductController extends Controller
             $name= time().'.'.$image->getClientOriginalExtension();
             $destinationPath=public_path('/images/product');
             $image ->move($destinationPath,$name);
-            $data['image_url']=$name;    
-            
+            $data['image_url']=$name;
+
         }
 
-        
+
 
         Product::create($data);
 
         return redirect(route('admin.product.index'))->with('success','Product created sucessfully!');
-        
+
 
 
 
         // dd($request->all());
                 // dd($request->name); it prints the  single data
 
-           
-        
-               // dd($data); // printing the data 
-                
-        
+
+
+               // dd($data); // printing the data
+
+
     }
 
 
 
-    
+
 
 
 
@@ -137,17 +140,17 @@ class ProductController extends Controller
 
         ]);
         $oldgallery=Product::find($id);
-       
+
         if($request->hasFile('image_url')){
             $image=$request->file('image_url');
             $name= uniqid().'.'.$image->getClientOriginalExtension();
             $destinationPath=public_path('/images/product');
             $image ->move($destinationPath,$name);
-            
+
             File::delete(public_path('images/product/'.$oldgallery->image_url));
 
-         
-            $data['image_url']=$name;            
+
+            $data['image_url']=$name;
         }
 
         $product= Product::find($id);

@@ -151,6 +151,8 @@ Route::middleware(['auth'])->group(function () {
 // // route foor viewing category
 
 Route::get('/user/viewcategory/{id}', [FrontuserController::class, 'viewcategory'])->name('user.viewcategory');
+Route::get('/user/viewbrand/{id}', [FrontuserController::class, 'viewbrand'])->name('user.viewbrand');
+
 
 
 

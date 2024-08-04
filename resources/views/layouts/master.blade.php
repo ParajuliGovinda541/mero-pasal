@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
 </head>
 <body>
 <!-- Top Navbar -->
@@ -100,8 +101,8 @@
             <li><a href="#" class="mr-2 hover:underline md:mr-4">Licensing</a></li>
             <li><a href="#" class="hover:underline">Contact</a></li>
         </ul>
-        <span class="ml-2 md:ml-0 md:text-center text-xs text-gray-500 dark:text-gray-400">Designed By Govinda Parauli</span>
-        <span class="text-xs text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://emporium.com/" class="hover:underline">Emporium™</a>. All Rights Reserved.</span>
+        <span class="ml-2 md:ml-0 md:text-center text-xs text-gray-500 dark:text-gray-400">Designed By Govinda Parauli & Bijay Thapa</span>
+        <span class="text-xs text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://govindaparajuli.com.np" class="hover:underline">Emporium™</a>. All Rights Reserved.</span>
 
 </footer>
 

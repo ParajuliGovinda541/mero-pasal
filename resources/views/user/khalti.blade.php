@@ -14,9 +14,9 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 
     <title>Document</title>
 </head>
@@ -24,6 +24,12 @@
 
     <button id="payment-button">Pay with Khalti</button>
 
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@khalti/khalti-checkout@1.1.0/dist/khalti-checkout.min.js"></script> --}}
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
     <script>
         var config = {
             // replace the publicKey with yours
@@ -84,7 +90,5 @@
             checkout.show({amount: 1000});
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@khalti/khalti-checkout@1.1.0/dist/khalti-checkout.min.js"></script>
 
-</body>
 </html>

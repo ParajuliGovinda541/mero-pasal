@@ -50,7 +50,8 @@ class FrontuserController extends Controller
         $itemsincart = $this->include();
         $products = Product::paginate(8);
         $categories = Category::all();
-        return view('user.index', compact('products', 'categories', 'itemsincart','wishcounts'));
+        $brands = Brand::all();
+        return view('user.index', compact('products', 'categories', 'itemsincart','wishcounts','brands'));
     }
 
 
@@ -164,6 +165,7 @@ class FrontuserController extends Controller
         // return view('user.viewcategory',compact('categories','itemsincart','products'));
     }
 
+
     public function destroy($id)
     {
         $cart = Cart::find($id);
@@ -177,16 +179,6 @@ class FrontuserController extends Controller
     {
         //  dd($request->all());
         $data=$request->toArray();
-            // = $request->validate([
-            //     'street' => 'required',
-            //     'city' => 'required',
-            //     'country' => 'required',
-            //     'zipcode' => 'required|numeric',
-            //     'phone' => 'required|numeric',
-            //     'person_name' => 'required',
-            //     'payement_method' => 'required',
-            // ]);
-
         $currentDate = Carbon::now()->toDateString();
         $data['status'] = 'Pending';
         $data['date'] = $currentDate;
@@ -301,8 +293,23 @@ class FrontuserController extends Controller
     {
         $itemsincart = $this->include();
         $wishcounts=$this->wishcount();
-        // $brands= Brand::all();
-        return view('user.brand',compact('itemsincart','wishcounts'));
+        $brands= Brand::all();
+        return view('user.brand',compact('itemsincart','wishcounts','brands'));
     }
+    public function viewbrand($id)
 
+    {
+        $category = Category::find($id);
+        $products = Product::where('categories_id', $id)->paginate(2);
+        $categories = Category::all();
+        $brands = Brand::all();
+        $itemsincart = $this->include();
+        $wishcounts=$this->wishcount();
+
+        return view('user.viewbrand', compact('products', 'categories', 'itemsincart', 'category','wishcounts','brands'));
+
+        // return response($product);
+
+        // return view('user.viewcategory',compact('categories','itemsincart','products'));
+    }
 }

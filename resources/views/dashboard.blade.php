@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@extends('layouts.links')
+@extends('layouts.scripts')
+@section('content')
 
 @section('content')
 
@@ -24,6 +27,11 @@
             <p class="text-blue-600 font-semibold text-lg mb-2">Total Categories</p>
             <h1 class="text-3xl font-bold text-gray-800">{{ $categories }}</h1>
         </a>
+                {{-- Total Brands --}}
+                <a href="{{ route('admin.category.index') }}" class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
+                    <p class="text-blue-600 font-semibold text-lg mb-2">Total Brands</p>
+                    <h1 class="text-3xl font-bold text-gray-800">{{ $brands }}</h1>
+                </a>
 
         {{-- Total Feedback --}}
         <a href="{{ route('contact.index') }}" class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 text-center transition-transform transform hover:scale-105 hover:shadow-xl">

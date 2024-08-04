@@ -4,52 +4,58 @@
 @section('content')
 
 @include('layouts.message')
-    <h2 class="font-bold text-4xl text-blue-700" >Products</h2>
-    <hr class="h-1 bg-blue-200">
 
-<div class="my-4 text-right px-10">
-    <a class="bg-amber-400 text-black px-4 py-2 rounded-lg shadow-md hover:shadow-amber-300"href="{{route('admin.product.create')}}">Add Product</a>
+<h2 class="font-bold text-4xl text-blue-800 mb-4">Products</h2>
+<hr class="h-1 bg-blue-300 mb-6">
+
+<div class="mb-4 text-right px-10">
+    <a class="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-yellow-600 transition duration-300" href="{{ route('admin.product.create') }}">Add Product</a>
 </div>
 
-    <table id="mytable">
-        <thead>
-            <th>S.N</th>
-            <th>Product</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Quantity</th>
-            <th>Category</th>
-            <th>Action</th>
+<div class="overflow-x-auto">
+    <table id="mytable" class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+        <thead class="bg-blue-700 text-white">
+            <tr>
+                <th class="py-3 px-4 border-b border-gray-300 text-left">S.N</th>
+                <th class="py-3 px-4 border-b border-gray-300 text-left">Product</th>
+                <th class="py-3 px-4 border-b border-gray-300 text-left">Description</th>
+                <th class="py-3 px-4 border-b border-gray-300 text-left">Price</th>
+                <th class="py-3 px-4 border-b border-gray-300 text-left">Image</th>
+                <th class="py-3 px-4 border-b border-gray-300 text-left">Brand</th>
 
+                <th class="py-3 px-4 border-b border-gray-300 text-left">Quantity</th>
+                <th class="py-3 px-4 border-b border-gray-300 text-left">Category</th>
+                <th class="py-3 px-4 border-b border-gray-300 text-left">Action</th>
+            </tr>
         </thead>
         <tbody>
-            @php
-                $sn=1
-            @endphp
             @foreach($products as $product)
-            <tr>
-                <td>{{$sn++}}</td>
-                <td>{{$product->product_name}}</td>
-                <td>{{$product->description}}</td>
-                <td>{{$product->price}}</td>
-            <td><img  class= "w-20" src="{{asset('images/product/'.$product->image_url)}}" alt =""></td>
-
-                <td>{{$product->quantity}}</td>
-                <td>{{$product->categories_name}}</td>
-
-
-                <td>
-                    <a href="{{route('admin.product.edit',$product->id)}}"class="bg-blue-600 px-2 py-1 rounded text-white hover:shadow-blue-600">Edit</a>
-                    <a onclick="return confirm('Are you sure want to delete ?')" href="{{route('admin.product.destroy',$product->id)}}"class="bg-red-600 px-2 py-1 rounded text-white hover:shadow-blue-400">Delete</a>
-
+            <tr class>
+                <td class="py-3 px-4 border-b border-gray-300">{{ $loop->iteration }}</td>
+                <td class="py-3 px-4 border-b border-gray-300">{{ $product->product_name }}</td>
+                <td class="py-3 px-4 border-b border-gray-300">{{ $product->description }}</td>
+                <td class="py-3 px-4 border-b border-gray-300">{{ $product->price }}</td>
+                <td class="py-3 px-4 border-b border-gray-300">
+                    <img class="w-24 h-16 object-cover rounded" src="{{ asset('images/product/'.$product->image_url) }}" alt="{{ $product->product_name }}">
+                </td>
+                <td class="py-3 px-4 border-b border-gray-300">
+                    <img class="w-24 h-16 object-cover rounded" src="{{ asset('images/brand/'.$product->photo) }}" alt="{{ $product->name }}">
+                </td>
+                <td class="py-3 px-4 border-b border-gray-300">{{ $product->quantity }}</td>
+                <td class="py-3 px-4 border-b border-gray-300">{{ $product->categories_name }}</td>
+                <td class="py-3 px-4 border-b border-gray-300 flex items-center space-x-2">
+                    <a href="{{ route('admin.product.edit', $product->id) }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-700 transition duration-300 text-center">Edit</a>
+                    <a onclick="return confirm('Are you sure you want to delete?')" href="{{ route('admin.product.destroy', $product->id) }}" class="bg-red-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-red-700 transition duration-300 text-center">Delete</a>
                 </td>
             </tr>
             @endforeach
         </tbody>
-    </table>
 
-    <script>
-        let table = new DataTable('#mytable');
-    </script>
+    </table>
+</div>
+
+<script>
+    let table = new DataTable('#mytable');
+</script>
+
 @endsection

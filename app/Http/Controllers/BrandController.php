@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -29,7 +30,9 @@ class BrandController extends Controller
 
     public function create()
     {
-        return view('admin.brand.create');
+        $allcategory = Category::all();
+
+        return view('admin.brand.create', compact('allcategory'));
     }
 
     public function store(Request $request)
@@ -43,7 +46,8 @@ class BrandController extends Controller
         ]);
         //dd($request['photo']);
         $data=[
-            'name'=>$request['name']
+            'name'=>$request['name'],
+            'category_id'=>$request['category_id']
 
 
 

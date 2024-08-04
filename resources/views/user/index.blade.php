@@ -92,8 +92,8 @@
     <section class="px-10 my-10">
         <h1 class="my-5 text-center text-xl font-bold">Latest Arrivals</h1>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            @foreach (range(1, 10) as $item)
-                <a href="#" class="rounded-md shadow-lg bg-white border border-transparent hover:border-black hover:outline-0 cursor-pointer">
+            @foreach ($categories as $category)
+                <a href="{{ route('user.viewcategory', $category->id) }}" class="rounded-md shadow-lg bg-white border border-transparent hover:border-black hover:outline-0 cursor-pointer">
                     <img class="rounded-t-md mx-auto mt-2" src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
                     <div class="flex justify-between p-2">
                         <p class="mt-2">Name</p>
@@ -106,12 +106,13 @@
     {{-- End of Latest Arrivals --}}
 
     {{-- Start of Our Brands --}}
-    <section class="px-14 my-10">
+    <section class="px-14 my-12 py-10">
         <h1 class="my-5 text-center text-xl font-bold">Our Brands</h1>
         <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-4">
-            @foreach (range(1, 16) as $brand)
-                <a href="#" class="cursor-pointer">
-                    <img class="mx-auto" src="{{ asset('images/landingpage.jpg') }}" alt="Brand">
+            @foreach ($brands as $brand)
+                <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+                    <img class="mx-auto h-32 object-cover" src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+                    <p class="p-2 font-bold">{{$brand->name}}</p>
                 </a>
             @endforeach
         </div>

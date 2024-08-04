@@ -11,67 +11,12 @@
                 <h1 class="my-5 text-center text-xl font-bold">Our Brands</h1>
             </div>
             <div class="grid grid-cols-10">
-
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
+                @foreach ($brands as $brand)
+                <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+                    <img class="mx-auto h-32 object-cover" src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+                    <p class="p-2 font-bold">{{$brand->name}}</p>
                 </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
-                <a href="" class="cursor-pointer ">
-                    <img class=" mx-auto " src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                </a>
+            @endforeach
             </div>
         </section>
 

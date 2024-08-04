@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    
+
 
     public function include()
     {
@@ -29,24 +29,25 @@ class ContactController extends Controller
 
         return view('user.contact',compact('itemsincart'));
     }
-    
+
     public function details($contactid)
     {
         $contact = Contact::find($contactid);
         // Make sure $contact is not null and contains valid data.
-        
+
         $users = User::whereIn('id', explode(',', $contact->user_id))->get();
-        
+
         return view('contact.details', compact('users','contact'));
     }
-    
+
 
     public function index()
     {
         $contacts=Contact::all();
         // dd($contacts);
-
-        return view('contact.index',compact('contacts'));
+        $itemsincart = $this->include();
+        // $wishcounts=$this->wishcount();
+        return view('contact.index',compact('contacts','itemsincart'));
     }
 
     /**
@@ -55,7 +56,7 @@ class ContactController extends Controller
     public function create()
     {
         return view('contact.create');
-        
+
     }
 
     /**
@@ -70,8 +71,8 @@ class ContactController extends Controller
 
         ]);
 
-       // dd($data); // printing the data 
-        
+       // dd($data); // printing the data
+
 
         Contact::create($data);
         return redirect(route('user.contact'))->with('success','Feedback sent sucessfully!');

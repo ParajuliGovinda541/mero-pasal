@@ -11,12 +11,17 @@ class Product extends Model
     protected $guarded=[];
 
 
-    
+
     // Correct the method name to "categories"
     public function categories()
     {
         return $this->belongsTo(Category::class);
     }
 
-    
+    public function brands()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+
 }

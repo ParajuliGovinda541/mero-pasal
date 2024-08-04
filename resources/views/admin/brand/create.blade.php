@@ -30,6 +30,24 @@
       <p class="text-red-600 text-xs -mt-2">{{$message}}</p>
   @enderror
     </div>
+    <div class="mb-6">
+        <label class="block uppercase tracking-wide text-purple-700 text-xs font-bold mb-2" for="categories_id">
+            Category
+        </label>
+        <select
+            class="appearance-none block w-full bg-white text-gray-700 border border-purple-500 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500"
+            name="category_id" id="category_id">
+            <option value="">Select Category</option>
+            @foreach ($allcategory as $cat)
+                <option value="{{ $cat->id }}">{{ $cat->categories_name }}</option>
+            @endforeach
+        </select>
+        @error('category_id')
+            <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+
+
 
 
 {{-- <input type="text" placeholder="brand Name" name="categories_name" class="w-full rounded-lg border-gray-300 my-2" value="{{old('categories_name')}}">

@@ -1,6 +1,8 @@
 @extends('layouts.app')
-
+@extends('layouts.links')
+@extends('layouts.scripts')
 @section('content')
+
 
 
 @include('layouts.message')
@@ -36,7 +38,7 @@
                 <td>{{$cart->qty}}</td>
                 <td>{{$cart->qty*$cart->product->price}}</td>
 
-            
+
                 <td>
           <button>hello
           </button>
