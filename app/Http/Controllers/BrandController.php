@@ -48,10 +48,6 @@ class BrandController extends Controller
         $data=[
             'name'=>$request['name'],
             'category_id'=>$request['category_id']
-
-
-
-
         ];
 
         if($request->hasFile('photo'))
@@ -82,7 +78,7 @@ class BrandController extends Controller
     public function update(Request $request,$id)
     {
         $data= $request->validate([
-            'brands_name'=>'required',
+            'name'=>'required',
             'photo'=>'required|image|mimes:jpg,jpeg,png'
 
 

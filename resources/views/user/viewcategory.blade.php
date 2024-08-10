@@ -8,7 +8,7 @@
     @foreach ($products as $product)
         <div class="mt-5 ml-10 max-w-sm rounded overflow-hidden shadow-lg">
             <a href="{{ route('user.viewproduct', $product->id) }}">
-                <img class="w-full" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
+                <img class="w-full h-80 bg-cover" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
             </a>
             <div class="px-5 py-3">
                 <div class="font-bold text-xl mb-2">{{ $product->product_name }}</div>

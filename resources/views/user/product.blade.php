@@ -8,34 +8,134 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {{-- Cards start here --}}
         @foreach ($products as $product)
-            <div class="relative bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden group transition-transform transform hover:scale-105">
+            <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
                 <a href="{{ route('user.viewproduct', $product->id) }}">
-                    <img class="w-full h-64 object-cover transition-transform transform group-hover:scale-105" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
+                    <img class="w-full h-64 object-cover" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
                     <div class="p-4">
                         <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ $product->product_name }}</h2>
                         <p class="text-gray-600 text-sm mb-2">Price: Rs {{ $product->price }}</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="text-white font-semibold bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">View Details</span>
+                            <form action="{{ route('wishlist.store', $product->id) }}" method="POST" class="flex items-center">
+                                @csrf
+                                <button type="submit" class="text-gray-600 hover:text-red-500">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </a>
-                <div class="absolute inset-0 flex flex-col justify-between p-4 opacity-0 group-hover:opacity-100 bg-gray-900 bg-opacity-40 transition-opacity">
-                    <div>
-                        <h2 class="text-lg font-semibold text-white mb-2">{{ $product->product_name }}</h2>
-                        <p class="text-red-500 font-bold">Rs {{ $product->price }}</p>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <a href="{{ route('user.viewproduct', $product->id) }}" class="text-white font-semibold hover:text-red-500">View Details</a>
+            </div>
+        @endforeach
+        {{-- Cards end here --}}
+                {{-- Cards start here --}}
+                @foreach ($products as $product)
+                <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                    <a href="{{ route('user.viewproduct', $product->id) }}">
+                        <img class="w-full h-64 object-cover" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
+                        <div class="p-4">
+                            <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ $product->product_name }}</h2>
+                            <p class="text-gray-600 text-sm mb-2">Price: Rs {{ $product->price }}</p>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-white font-semibold bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">View Details</span>
+                                <form action="{{ route('wishlist.store', $product->id) }}" method="POST" class="flex items-center">
+                                    @csrf
+                                    <button type="submit" class="text-gray-600 hover:text-red-500">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+            {{-- Cards end here --}}
+                    {{-- Cards start here --}}
+        @foreach ($products as $product)
+        <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+            <a href="{{ route('user.viewproduct', $product->id) }}">
+                <img class="w-full h-64 object-cover" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ $product->product_name }}</h2>
+                    <p class="text-gray-600 text-sm mb-2">Price: Rs {{ $product->price }}</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-white font-semibold bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">View Details</span>
                         <form action="{{ route('wishlist.store', $product->id) }}" method="POST" class="flex items-center">
                             @csrf
-                            <button type="submit" class="text-white hover:text-red-500">
+                            <button type="submit" class="text-gray-600 hover:text-red-500">
                                 <i class="far fa-heart"></i>
                             </button>
                         </form>
                     </div>
                 </div>
+            </a>
+        </div>
+    @endforeach
+    {{-- Cards end here --}}
+            {{-- Cards start here --}}
+            @foreach ($products as $product)
+            <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                <a href="{{ route('user.viewproduct', $product->id) }}">
+                    <img class="w-full h-64 object-cover" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
+                    <div class="p-4">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ $product->product_name }}</h2>
+                        <p class="text-gray-600 text-sm mb-2">Price: Rs {{ $product->price }}</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="text-white font-semibold bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">View Details</span>
+                            <form action="{{ route('wishlist.store', $product->id) }}" method="POST" class="flex items-center">
+                                @csrf
+                                <button type="submit" class="text-gray-600 hover:text-red-500">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
             </div>
         @endforeach
-        {{-- Cards end here --}}
+        {{-- Cards end here --}}        {{-- Cards start here --}}
+        @foreach ($products as $product)
+        <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+            <a href="{{ route('user.viewproduct', $product->id) }}">
+                <img class="w-full h-64 object-cover" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ $product->product_name }}</h2>
+                    <p class="text-gray-600 text-sm mb-2">Price: Rs {{ $product->price }}</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-white font-semibold bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">View Details</span>
+                        <form action="{{ route('wishlist.store', $product->id) }}" method="POST" class="flex items-center">
+                            @csrf
+                            <button type="submit" class="text-gray-600 hover:text-red-500">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </a>
+        </div>
+    @endforeach
+    {{-- Cards end here --}}        {{-- Cards start here --}}
+        @foreach ($products as $product)
+        <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+            <a href="{{ route('user.viewproduct', $product->id) }}">
+                <img class="w-full h-64 object-cover" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ $product->product_name }}</h2>
+                    <p class="text-gray-600 text-sm mb-2">Price: Rs {{ $product->price }}</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-white font-semibold bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded">View Details</span>
+                        <form action="{{ route('wishlist.store', $product->id) }}" method="POST" class="flex items-center">
+                            @csrf
+                            <button type="submit" class="text-gray-600 hover:text-red-500">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </a>
+        </div>
+    @endforeach
+    {{-- Cards end here --}}
     </div>
-
-
 </div>
 @endsection

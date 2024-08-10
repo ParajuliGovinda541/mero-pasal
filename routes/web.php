@@ -188,6 +188,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
     Route::post('/product/{id}/update', [ProductController::class, 'update'])->name('admin.product.update');
     Route::get('/product/{id}/destroy', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+    // Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+
 
     // end of Route product
 

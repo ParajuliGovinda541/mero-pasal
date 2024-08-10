@@ -45,8 +45,9 @@
                 <td class="py-3 px-4 border-b border-gray-300">{{ $product->categories_name }}</td>
                 <td class="py-3 px-4 border-b border-gray-300 flex items-center space-x-2">
                     <a href="{{ route('admin.product.edit', $product->id) }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-700 transition duration-300 text-center">Edit</a>
-                    <a onclick="return confirm('Are you sure you want to delete?')" href="{{ route('admin.product.destroy', $product->id) }}" class="bg-red-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-red-700 transition duration-300 text-center">Delete</a>
-                </td>
+                    <a onclick="return confirm('Are you sure you want to delete this brand?')" href="{{ route('admin.product.destroy', $product->id) }}" class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-200">Delete</a>
+
+                    </td>
             </tr>
             @endforeach
         </tbody>

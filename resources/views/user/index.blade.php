@@ -111,13 +111,55 @@
         <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-4">
             @foreach ($brands as $brand)
                 <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-                    <img class="mx-auto h-32 object-cover" src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+                    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
                     <p class="p-2 font-bold">{{$brand->name}}</p>
                 </a>
             @endforeach
+            @foreach ($brands as $brand)
+            <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+                <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+                <p class="p-2 font-bold">{{$brand->name}}</p>
+            </a>
+        @endforeach      @foreach ($brands as $brand)
+        <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+            <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+            <p class="p-2 font-bold">{{$brand->name}}</p>
+        </a>
+    @endforeach
+    @foreach ($brands as $brand)
+    <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+        <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+        <p class="p-2 font-bold">{{$brand->name}}</p>
+    </a>
+@endforeach
+@foreach ($brands as $brand)
+<a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+    <p class="p-2 font-bold">{{$brand->name}}</p>
+</a>
+@endforeach
+@foreach ($brands as $brand)
+<a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+    <p class="p-2 font-bold">{{$brand->name}}</p>
+</a>
+@endforeach
+@foreach ($brands as $brand)
+<a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+    <p class="p-2 font-bold">{{$brand->name}}</p>
+</a>
+@endforeach
+@foreach ($brands as $brand)
+<a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
+    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
+    <p class="p-2 font-bold">{{$brand->name}}</p>
+</a>
+@endforeach
         </div>
     </section>
     {{-- End of Our Brands --}}
+
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

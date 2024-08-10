@@ -2,7 +2,7 @@
 
 @section('content')
     <form action="{{ route('product.store') }}" method="POST"
-        class="w-1/2 grid grid-cols-2 gap-10 mx-auto max-w-lg p-6 bg-gradient-to-r from-yellow-50 via-pink-100 to-orange-200 shadow-lg rounded-lg"
+        class="w-1/2 grid grid-cols-2 gap-10 mx-auto mt-10 max-w-lg p-6 bg-gradient-to-r from-yellow-50 via-pink-100 to-orange-200 shadow-lg rounded-lg"
         enctype="multipart/form-data">
         @csrf
         <div>

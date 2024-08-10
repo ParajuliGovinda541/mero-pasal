@@ -162,13 +162,25 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+     public function destroy($id)
     {
-        $products = Product::find($id);
-        // dd($products);
-        $products->delete();
+        $brand = Product::find($id);
+        $brand->delete();
         return redirect(route('admin.product.index'))->with('success','Product deleted sucessfully!');
+
     }
+//     public function destroy( $id)
+// {
+//     $product = Product::find($id);
+
+//     if ($product) {
+//         $product->delete();
+//         return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully!');
+//     }
+
+//     return redirect()->route('admin.product.index')->with('error', 'Product not found.');
+// }
+
 
 
     public function showRecommendations()
