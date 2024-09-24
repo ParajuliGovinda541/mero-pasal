@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\cart;
 use App\Models\User;
+use App\Models\wishlist;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
 
+    public function wishcount()
+    {
+        if (!auth()->user()) {
+            return 0;
+        } else {
+            return wishlist::where('user_id', auth()->user()->id)->count();
+        }
+    }
 
     public function include()
     {
@@ -27,7 +36,8 @@ class ContactController extends Controller
     {
         $itemsincart = $this->include();
 
-        return view('user.contact',compact('itemsincart'));
+        $wishcounts=$this->wishcount();
+        return view('user.contact',compact('itemsincart','wishcounts'));
     }
 
     public function details($contactid)
@@ -46,8 +56,8 @@ class ContactController extends Controller
         $contacts=Contact::all();
         // dd($contacts);
         $itemsincart = $this->include();
-        // $wishcounts=$this->wishcount();
-        return view('contact.index',compact('contacts','itemsincart'));
+        $wishcounts=$this->wishcount();
+        return view('contact.index',compact('contacts','itemsincart','wishcounts'));
     }
 
     /**
@@ -55,6 +65,7 @@ class ContactController extends Controller
      */
     public function create()
     {
+
         return view('contact.create');
 
     }

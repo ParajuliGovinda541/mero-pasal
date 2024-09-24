@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Cart;
+use App\Models\Contact;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -51,7 +52,10 @@ class FrontuserController extends Controller
         $products = Product::paginate(8);
         $categories = Category::all();
         $brands = Brand::all();
-        return view('user.index', compact('products', 'categories', 'itemsincart','wishcounts','brands'));
+        $contacts = Contact::all();
+
+
+        return view('user.index', compact('products', 'categories', 'itemsincart','wishcounts','brands', 'contacts'));
     }
 
 
@@ -307,9 +311,5 @@ class FrontuserController extends Controller
         $wishcounts=$this->wishcount();
 
         return view('user.viewbrand', compact('products', 'categories', 'itemsincart', 'category','wishcounts','brands'));
-
-        // return response($product);
-
-        // return view('user.viewcategory',compact('categories','itemsincart','products'));
     }
 }

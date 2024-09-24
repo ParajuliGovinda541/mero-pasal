@@ -1,4 +1,3 @@
-{{-- @extends('layouts.links') --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -7,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>
-        {{ config('app.name', 'Emporium') }}
-    </title>
+    <title>{{ config('app.name', 'Mero-Pasal') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -17,43 +14,37 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <!-- Scripts -->
-      @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
+<body class="bg-gray-100 font-sans antialiased">
     @include('layouts.navigation')
-    <div class="min-h-screen  flex flex-row bg-gray-100 dark:bg-gray-900">
 
-
-        <div
-            class="flex flex-row justify-center py-10 w-64  text-white  bg-gray-900 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 min-h-screen">
-
-            <div class="flex flex-col gap-3 text-lg min-h-full m-5 rounded-sm ">
-                <a href="{{ route('dashboard') }}"
-                    class="hover:bg-white p-1 hover:text-gray-800 border-b-2">Dashboard</a>
-                <a href="{{ route('admin.product.index') }}"
-                    class="hover:bg-white p-1 hover:text-gray-800 border-b-2">Products</a>
-                <a href="{{ route('admin.category.index') }}"
-                    class="hover:bg-white p-1 hover:text-gray-800 border-b-2">Category</a>
-                    <a href="{{ route('admin.brand.index') }}"
-                    class="hover:bg-white p-1 hover:text-gray-800 border-b-2">Brand</a>
-                <a href="{{ route('admin.order.index') }}"
-                    class="hover:bg-white p-1 hover:text-gray-800 border-b-2">Order</a>
-                <a href="{{ route('contact.index') }}"
-                    class="hover:bg-white p-1 hover:text-gray-800 border-b-2">Feedback</a>
-                <a href="" class="hover:bg-white p-1 hover:text-gray-800 border-b-2">Settings</a>
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-900 text-white shadow-lg">
+            <div class="flex flex-col justify-between h-full p-5">
+                <div>
+                    <h2 class="text-xl font-semibold mb-5">Menu</h2>
+                    <nav class="flex flex-col gap-2">
+                        <a href="{{ route('dashboard') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800 active:bg-teal-500">Dashboard</a>
+                        <a href="{{ route('admin.product.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Products</a>
+                        <a href="{{ route('admin.category.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Category</a>
+                        <a href="{{ route('admin.brand.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Brand</a>
+                        <a href="{{ route('admin.order.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Order</a>
+                        <a href="{{ route('contact.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Feedback</a>
+                        <a href="#" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Settings</a>
+                    </nav>
+                </div>
             </div>
-
         </div>
-        <!-- COntents -->
-        <div class="flex-1 dashboard bg-white pl-10"> <!-- Apply the 'dashboard' class here -->
+
+        <!-- Content Area -->
+        <div class="flex-1 p-10 bg-white rounded-lg shadow-md ml-5">
+            <h1 class="text-2xl font-semibold mb-6">Welcome to the Dashboard</h1>
             @yield('content')
         </div>
     </div>
-
 
 </body>
 

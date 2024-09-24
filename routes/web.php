@@ -33,14 +33,6 @@ use Illuminate\Support\Facades\Log;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('payement', function () {
-//     return view('khalti');
-// });
-
 
 Route::get('/user/searchs', [FrontuserController::class, 'search'])->name('user.searchs');
 Route::get('/user/orderedproduct', [OrderController::class, 'ordersearch'])->name('user.orderedproduct');
@@ -124,31 +116,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/{id}/destroy', [WishlistController::class, 'destroy'])->name('user.wishlist.destroy');
     Route::get('/user/recommendations', [ProductController::class, 'showRecommendations'])->middleware('auth');
 
-
-
-
 });
-
-
-//route for cart deletion and order'
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('/mycart/{id}/destroy', [FrontuserController::class, 'destroy'])->name('user.mycart.destroy');
-    // route for user order store
-    Route::post('/mycart/orderedproduct', [FrontuserController::class, 'orderedproduct'])->name('order.orderedproduct');
-    // route for order display
-    Route::get('/orderedproduct', [FrontuserController::class, 'ordertable'])->name('user.orderedproduct');
-    // route for checkout
-    Route::get('/checkout', [FrontuserController::class, 'checkout'])->name('user.checkout');
-});
-
-
-
-// route for new arrivals
-
-
-// Route:: get('/newarrivals',[])
-// // route foor viewing category
 
 Route::get('/user/viewcategory/{id}', [FrontuserController::class, 'viewcategory'])->name('user.viewcategory');
 Route::get('/user/viewbrand/{id}', [FrontuserController::class, 'viewbrand'])->name('user.viewbrand');
@@ -159,7 +127,17 @@ Route::get('/user/viewbrand/{id}', [FrontuserController::class, 'viewbrand'])->n
 
 // route for admin side
 
-Route::middleware('auth')->group(function () {
+//route for cart deletion and order'
+Route::middleware(['auth','role:admin'])->group(function () {
+
+    Route::get('/mycart/{id}/destroy', [FrontuserController::class, 'destroy'])->name('user.mycart.destroy');
+    // route for user order store
+    Route::post('/mycart/orderedproduct', [FrontuserController::class, 'orderedproduct'])->name('order.orderedproduct');
+    // route for order display
+    Route::get('/orderedproduct', [FrontuserController::class, 'ordertable'])->name('user.orderedproduct');
+    // route for checkout
+    Route::get('/checkout', [FrontuserController::class, 'checkout'])->name('user.checkout');
+
     // Route of category
 
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');

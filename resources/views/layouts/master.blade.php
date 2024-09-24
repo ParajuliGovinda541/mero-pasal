@@ -64,6 +64,8 @@
             <a href="{{ route('user.about') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">About Us</a>
             <a href="{{ route('user.product') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Products</a>
             <a href="{{ route('user.brand') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Brands</a>
+            <a href="{{ route('user.contact') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Contacts</a>
+
         </div>
         <div class="relative md:flex items-center space-x-4 hidden">
             <form action="{{ route('user.search') }}" method="GET" role="search">
