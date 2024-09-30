@@ -4,148 +4,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <!-- Include Tailwind CSS styles -->
+    <title>Sign Up</title>
+    <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom animation for error messages */
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.3s ease;
+        }
+
+        /* Custom shadow for interactive fields */
+        input:focus {
+            box-shadow: 0 0 10px rgba(72, 187, 120, 0.5);
+        }
+    </style>
 </head>
 
-<body>
-    <div class="bg-gray-100 min-h-screen flex flex-col">
-        <div class="container mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full max-w-sm">
-                <form id="signupForm" action="{{ route('user.store') }}" method="POST" onsubmit="return validateForm()">
-                    @csrf
-                    <h1 class="mb-8 text-3xl text-center font-bold">Sign up</h1>
-                    <input type="text" id="name" class="block border border-gray-300 focus:border-green-500 w-full p-3 rounded mb-4" name="name" placeholder="Full Name" />
-                    <span id="nameError" class="hidden text-red-600 text-sm">Please enter your Full Name.</span>
+<body class="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto">
+        <div class="bg-white px-8 py-10 rounded-lg shadow-lg max-w-md w-full">
+            <h1 class="text-4xl font-bold text-center text-gray-700 mb-6">Create Account</h1>
 
-                    <!-- Add similar <span> elements for other fields -->
-                    <input type="text" id="phone" class="block border border-gray-300 focus:border-green-500 w-full p-3 rounded mb-4" name="phone" placeholder="Phone" />
-                    <span id="phoneError" class="hidden text-red-600 text-sm">Please enter a valid Phone number.</span>
+            <form id="signupForm" action="{{ route('user.store') }}" method="POST" onsubmit="return validateForm()">
+                @csrf
 
-                    <input type="text" id="address" class="block border border-gray-300 focus:border-green-500 w-full p-3 rounded mb-4" name="address" placeholder="Address" />
-                    <span id="addressError" class="hidden text-red-600 text-sm">Please enter your Address.</span>
+                <div class="relative mb-4">
+                    <input type="text" id="name" class="block w-full p-4 border border-gray-300 rounded-lg text-lg outline-none focus:border-green-500 transition" name="name" placeholder="Full Name" />
+                    <span id="nameError" class="hidden text-red-600 text-sm absolute top-14 shake">Please enter your Full Name.</span>
+                </div>
 
-                    <input type="text" id="email" class="block border border-gray-300 focus:border-green-500 w-full p-3 rounded mb-4" name="email" placeholder="Email" />
-                    <span id="emailError" class="hidden text-red-600 text-sm">Please enter a valid Email address.</span>
+                <div class="relative mb-4">
+                    <input type="text" id="phone" class="block w-full p-4 border border-gray-300 rounded-lg text-lg outline-none focus:border-green-500 transition" name="phone" placeholder="Phone" />
+                    <span id="phoneError" class="hidden text-red-600 text-sm absolute top-14 shake">Please enter a valid Phone number.</span>
+                </div>
 
-                    <input type="password" id="password" class="block border border-gray-300 focus:border-green-500 w-full p-3 rounded mb-4" name="password" placeholder="Password" />
-                    <span id="passwordError" class="hidden text-red-600 text-sm">Please enter a Password.</span>
+                <div class="relative mb-4">
+                    <input type="text" id="address" class="block w-full p-4 border border-gray-300 rounded-lg text-lg outline-none focus:border-green-500 transition" name="address" placeholder="Address" />
+                    <span id="addressError" class="hidden text-red-600 text-sm absolute top-14 shake">Please enter your Address.</span>
+                </div>
 
-                    <input type="password" id="password_confirmation" class="block border border-gray-300 focus:border-green-500 w-full p-3 rounded mb-4" name="password_confirmation" placeholder="Confirm Password" />
-                    <span id="passwordConfirmationError" class="hidden text-red-600 text-sm">Passwords do not match.</span>
+                <div class="relative mb-4">
+                    <input type="text" id="email" class="block w-full p-4 border border-gray-300 rounded-lg text-lg outline-none focus:border-green-500 transition" name="email" placeholder="Email" />
+                    <span id="emailError" class="hidden text-red-600 text-sm absolute top-14 shake">Please enter a valid Email address.</span>
+                </div>
 
-                    <button type="submit" class="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none my-1">Create Account</button>
-                    <div class="text-center text-sm text-gray-600 mt-4">
-                        <!-- ... (Terms of Service and Privacy Policy links) ... -->
-                    </div>
-                </form>
-                <!-- Success message element -->
+                <div class="relative mb-4">
+                    <input type="password" id="password" class="block w-full p-4 border border-gray-300 rounded-lg text-lg outline-none focus:border-green-500 transition" name="password" placeholder="Password" />
+                    <span id="passwordError" class="hidden text-red-600 text-sm absolute top-14 shake">Please enter a Password.</span>
+                </div>
+
+                <div class="relative mb-4">
+                    <input type="password" id="password_confirmation" class="block w-full p-4 border border-gray-300 rounded-lg text-lg outline-none focus:border-green-500 transition" name="password_confirmation" placeholder="Confirm Password" />
+                    <span id="passwordConfirmationError" class="hidden text-red-600 text-sm absolute top-14 shake">Passwords do not match.</span>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg text-lg font-semibold transition-all duration-300 ease-in-out">
+                    Create Account
+                </button>
+
                 <div id="successMessage" class="hidden text-center text-green-600 mt-4">
                     Registered Successfully! Redirecting to login page...
                 </div>
-            </div>
+            </form>
 
-            <div class="text-gray-600 mt-6">
+            <div class="text-center text-gray-600 mt-4">
                 Already have an account?
-                <a class="no-underline border-b border-blue-600 text-blue-600 hover:border-blue-800" href="{{ route('userlogin') }}">Log in</a>.
+                <a href="{{ route('userlogin') }}" class="text-blue-500 hover:text-blue-700">Log in</a>
             </div>
         </div>
     </div>
 
     <script>
         function validateForm() {
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const password_confirmation = document.getElementById('password_confirmation').value;
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const password_confirmation = document.getElementById('password_confirmation').value.trim();
 
-            // Validation for Name
-            if (name.trim() === '') {
-                displayErrorMessage('name', 'Please enter your Full Name.');
-                return false;
+            let isValid = true;
+
+            if (name === '') {
+                showError('name', 'Please enter your Full Name.');
+                isValid = false;
             } else {
-                hideErrorMessage('name');
+                hideError('name');
             }
 
-            // Validation for Phone
-            if (phone.trim() === '') {
-                displayErrorMessage('phone', 'Please enter a valid Phone number.');
-                return false;
-            } else if (!/^\d{10}$/.test(phone.trim())) {
-                displayErrorMessage('phone', 'Phone number must be 10 digits.');
-                return false;
+            if (!/^\d{10}$/.test(phone)) {
+                showError('phone', 'Phone number must be 10 digits.');
+                isValid = false;
             } else {
-                hideErrorMessage('phone');
+                hideError('phone');
             }
 
-            // Validation for Address
-            if (address.trim() === '') {
-                displayErrorMessage('address', 'Please enter your Address.');
-                return false;
+            if (address === '') {
+                showError('address', 'Please enter your Address.');
+                isValid = false;
             } else {
-                hideErrorMessage('address');
+                hideError('address');
             }
 
-            // Validation for Email
-            if (email.trim() === '') {
-                displayErrorMessage('email', 'Please enter your Email.');
-                return false;
-            } else if (!isValidEmail(email)) {
-                displayErrorMessage('email', 'Please enter a valid Email address.');
-                return false;
+            if (!isValidEmail(email)) {
+                showError('email', 'Please enter a valid Email address.');
+                isValid = false;
             } else {
-                hideErrorMessage('email');
+                hideError('email');
             }
 
-            // Validation for Password
-            if (password.trim() === '') {
-                displayErrorMessage('password', 'Please enter a Password.');
-                return false;
+            if (password === '') {
+                showError('password', 'Please enter a Password.');
+                isValid = false;
+            } else if (password !== password_confirmation) {
+                showError('password_confirmation', 'Passwords do not match.');
+                isValid = false;
             } else {
-                hideErrorMessage('password');
+                hideError('password');
+                hideError('password_confirmation');
             }
 
-            // Validation for Password Confirmation
-            if (password !== password_confirmation) {
-                displayErrorMessage('password_confirmation', 'Passwords do not match.');
-                return false;
-            } else {
-                hideErrorMessage('password_confirmation');
+            if (isValid) {
+                showSuccessMessage();
             }
 
-            // If the form passes validation, you can allow the form submission
-            showSuccessMessage();
-            return true;
+            return isValid;
         }
 
-        function displayErrorMessage(field, message) {
-            const errorMessage = document.getElementById(`${field}Error`);
-            errorMessage.innerText = message;
-            errorMessage.classList.remove('hidden');
+        function showError(field, message) {
+            const errorSpan = document.getElementById(`${field}Error`);
+            errorSpan.innerText = message;
+            errorSpan.classList.remove('hidden');
+            errorSpan.classList.add('shake');
+            setTimeout(() => errorSpan.classList.remove('shake'), 500);
         }
 
-        function hideErrorMessage(field) {
-            const errorMessage = document.getElementById(`${field}Error`);
-            errorMessage.classList.add('hidden');
+        function hideError(field) {
+            const errorSpan = document.getElementById(`${field}Error`);
+            errorSpan.classList.add('hidden');
         }
 
         function isValidEmail(email) {
-            // Basic email validation using a regular expression
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         }
 
         function showSuccessMessage() {
-            // Show the success message element by removing the "hidden" class
             const successMessage = document.getElementById('successMessage');
             successMessage.classList.remove('hidden');
-
-            // Hide the success message after a few seconds
             setTimeout(() => {
-                // Redirect to the login page after the success message is displayed
                 window.location.href = "{{ route('userlogin') }}";
             }, 3000);
         }

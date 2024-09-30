@@ -7,12 +7,12 @@
         <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
             <div class="md:flex">
                 <div class="md:flex-shrink-0">
-                    <img class="h-96 w-full object-cover md:w-96" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
+                    <img class="h-96 w-full object-cover md:w-96 transition-transform transform hover:scale-105" src="{{ asset('images/product/' . $product->image_url) }}" alt="Product Image">
                 </div>
                 <div class="p-8">
-                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{{ $product->category }}</div>
+                    <div class="uppercase tracking-wide text-sm text-indigo-600 font-semibold">{{ $product->category }}</div>
                     <h1 class="mt-1 text-3xl font-semibold text-gray-900">{{ $product->product_name }}</h1>
-                    <p class="mt-2 text-gray-600">{{ $product->description }}</p>
+                    <p class="mt-2 text-gray-600 leading-relaxed">{{ $product->description }}</p>
                     <div class="mt-4">
                         <span class="text-3xl font-bold text-gray-900">Rs {{ $product->price }}</span>
                         @if ($product->quantity > 0)
@@ -34,7 +34,7 @@
                             <label for="qty" class="mr-3 text-sm font-medium text-gray-700">Quantity:</label>
                             <input type="number" id="qty" name="qty" value="1" min="1" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-20 sm:text-sm border-gray-300 rounded-md">
                         </div>
-                        <button type="submit" class="mt-4 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 {{ $product->quantity <= 0 ? 'opacity-50 cursor-not-allowed' : '' }}" {{ $product->quantity <= 0 ? 'disabled' : '' }}>
+                        <button type="submit" class="mt-4 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-opacity duration-300 ease-in-out {{ $product->quantity <= 0 ? 'opacity-50 cursor-not-allowed' : '' }}" {{ $product->quantity <= 0 ? 'disabled' : '' }}>
                             Add to Cart
                         </button>
                         @error('qty')
@@ -58,7 +58,7 @@
                             <p class="text-gray-600 text-sm mb-2">Price: Rs {{ $relatedproduct->price }}</p>
                         </div>
                     </a>
-                    <div class="absolute inset-0 flex flex-col justify-between p-4 opacity-0 group-hover:opacity-100 bg-gray-900 bg-opacity-40 transition-opacity">
+                    <div class="absolute inset-0 flex flex-col justify-between p-4 opacity-0 group-hover:opacity-100 bg-gray-900 bg-opacity-40 transition-opacity duration-300 ease-in-out">
                         <div>
                             <h2 class="text-lg font-semibold text-white mb-2">{{ $relatedproduct->product_name }}</h2>
                             <p class="text-red-500 font-bold">Rs {{ $relatedproduct->price }}</p>

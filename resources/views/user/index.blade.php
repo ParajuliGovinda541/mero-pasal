@@ -8,56 +8,53 @@
         <div class="swiper-wrapper">
             @foreach (['left', 'right', 'left'] as $position)
                 <div class="swiper-slide">
-                    <div class="flex justify-between">
-                        @if ($position === 'left')
-                            <div class="w-1/2 pl-10 pt-10 text-justify">
-                                <h2 class="text-3xl font-bold">
-                                    Enhance Your Productivity with Our Sleek, High-Performance Laptop
-                                </h2>
-                                <p class="mt-5">
-                                    "Discover our latest arrival, designed to elevate your computing experience.
-                                    Featuring cutting-edge technology, exceptional performance, and a sleek design,
-                                    this laptop is perfect for professionals, students, and creatives. Stay ahead of the curve
-                                    with lightning-fast processing speeds, stunning visuals, and long-lasting battery life.
-                                    Upgrade to the future of laptops today."
-                                </p>
-                                <div class="group relative ml-96 w-fit cursor-pointer">
-                                    <p class="bg-green-500 w-fit px-5 py-2 rounded-md transition duration-500 group-hover:hidden">
-                                        Shop <span>Now</span>
+                    <div class="relative">
+                        <!-- Background Overlay -->
+                        <div class="absolute inset-0 bg-black opacity-50"></div>
+                        <div class="relative flex flex-col md:flex-row justify-between items-center p-10">
+                            @if ($position === 'left')
+                                <div class="w-full md:w-1/2 text-left md:text-justify z-10">
+                                    <h2 class="text-4xl font-extrabold text-white leading-tight text-shadow-lg">
+                                        Elevate Your Productivity with Our High-Performance Laptop
+                                    </h2>
+                                    <p class="mt-5 text-lg text-gray-200 leading-relaxed">
+                                        "Discover the latest in cutting-edge technology designed for professionals, students, and creatives.
+                                        Enjoy stunning visuals, high-speed performance, and long-lasting battery life."
                                     </p>
-                                    <p class="bg-yellow-500 w-fit px-5 py-2 rounded-md transition duration-500 hidden group-hover:block">
-                                        Price <span>45000</span>
-                                    </p>
+                                    <div class="flex mt-8">
+                                        <a href="#" class="bg-green-500 text-white px-5 py-2 rounded-md hover:bg-green-600 transition duration-300">
+                                            Shop Now
+                                        </a>
+                                        <a href="#" class="ml-5 bg-yellow-500 text-black px-5 py-2 rounded-md hover:bg-yellow-600 transition duration-300">
+                                            Price: 45000
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <img src="{{ asset('images/landingpage.jpg') }}" alt="Hero Image">
-                            </div>
-                        @else
-                            <div>
-                                <img src="{{ asset('images/landingpage.jpg') }}" alt="Hero Image">
-                            </div>
-                            <div class="w-1/2 pl-10 pt-10 text-justify">
-                                <h2 class="text-3xl font-bold">
-                                    Enhance Your Productivity with Our Sleek, High-Performance Laptop
-                                </h2>
-                                <p class="mt-5">
-                                    "Discover our latest arrival, designed to elevate your computing experience.
-                                    Featuring cutting-edge technology, exceptional performance, and a sleek design,
-                                    this laptop is perfect for professionals, students, and creatives. Stay ahead of the curve
-                                    with lightning-fast processing speeds, stunning visuals, and long-lasting battery life.
-                                    Upgrade to the future of laptops today."
-                                </p>
-                                <div class="group relative ml-96 w-fit cursor-pointer">
-                                    <p class="bg-green-500 w-fit px-5 py-2 rounded-md transition duration-500 group-hover:hidden">
-                                        Shop <span>Now</span>
-                                    </p>
-                                    <p class="bg-yellow-500 w-fit px-5 py-2 rounded-md transition duration-500 hidden group-hover:block">
-                                        Price <span>45000</span>
-                                    </p>
+                                <div class="w-full md:w-1/2 z-10">
+                                    <img src="{{ asset('images/image-comp.jpg') }}" height="" alt="Hero Image" class="rounded-lg shadow-lg">
                                 </div>
-                            </div>
-                        @endif
+                            @else
+                                <div class="w-full md:w-1/2 z-10">
+                                    <img src="{{ asset('images/images-iphone.jpg') }}" alt="Hero Image" class="rounded-lg shadow-lg">
+                                </div>
+                                <div class="w-full md:w-1/2 text-left md:text-justify z-10">
+                                    <h2 class="text-4xl font-extrabold text-white leading-tight text-shadow-lg">
+                                        Elevate Your Productivity with Our High-Performance Laptop
+                                    </h2>
+                                    <p class="mt-5 text-lg text-gray-200 leading-relaxed">
+                                        "Experience seamless computing with cutting-edge design and superior performance tailored for professionals and students."
+                                    </p>
+                                    <div class="flex mt-8">
+                                        <a href="#" class="bg-green-500 text-white px-5 py-2 rounded-md hover:bg-green-600 transition duration-300">
+                                            Shop Now
+                                        </a>
+                                        <a href="#" class="ml-5 bg-yellow-500 text-black px-5 py-2 rounded-md hover:bg-yellow-600 transition duration-300">
+                                            Price: 45000
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -68,98 +65,61 @@
         <div class="swiper-button-prev"></div>
     </div>
 
-    {{-- Start of Categories --}}
-    <div class="px-8 my-10">
-        <h1 class="text-3xl font-semibold text-center mb-8">Our Categories</h1>
+    <!-- Add the text-shadow class in your CSS or Tailwind config -->
+    <style>
+        .text-shadow-lg {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+
+
+    {{-- Categories Section --}}
+    <div class="px-8 mt-16">
+        <h1 class="text-3xl font-bold text-center mb-10">Our Categories</h1>
         <div class="swiper mySwiperCard">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
-                    <a href="{{ route('user.viewcategory', $category->id) }}" class="swiper-slide">
-                        <img src="{{ asset('images/category/' . $category->image_url) }}" class="w-full h-52 object-cover rounded-md mb-4" alt="{{ $category->categories_name }}">
-                        <div class="text-center">
-                            <p class="text-lg font-medium mb-1">{{ $category->categories_name }}</p>
-                            <p class="text-sm text-gray-600">Category</p>
-                        </div>
-                    </a>
+                    <div class="swiper-slide">
+                        <a href="{{ route('user.viewcategory', $category->id) }}" class="block text-center hover:shadow-lg transition duration-300">
+                            <img src="{{ asset('images/category/' . $category->image_url) }}" class="w-full h-52 object-cover rounded-md mb-4" alt="{{ $category->categories_name }}">
+                            <h3 class="text-xl font-semibold">{{ $category->categories_name }}</h3>
+                            <p class="text-gray-600">Explore Now</p>
+                        </a>
+                    </div>
                 @endforeach
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </div>
-    {{-- End of Categories --}}
 
-    {{-- Start of Latest Arrivals --}}
-    <section class="px-10 my-10">
-        <h1 class="my-5 text-center text-xl font-bold">Latest Arrivals</h1>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            @foreach ($categories as $category)
-                <a href="{{ route('user.viewcategory', $category->id) }}" class="rounded-md shadow-lg bg-white border border-transparent hover:border-black hover:outline-0 cursor-pointer">
-                    <img class="rounded-t-md mx-auto mt-2" src="{{ asset('images/landingpage.jpg') }}" alt="Latest Arrival">
-                    <div class="flex justify-between p-2">
-                        <p class="mt-2">Name</p>
-                        <p class="mt-2">Price</p>
+    {{-- Latest Arrivals Section --}}
+    <section class="px-10 my-16">
+        <h1 class="text-3xl font-bold text-center mb-8">Latest Arrivals</h1>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            @foreach ($products as $arrival)
+                <a href="{{ route('user.viewproduct', $arrival->id) }}" class="block border border-gray-300 rounded-lg hover:shadow-lg transition duration-300">
+                    <img class="rounded-t-md w-full h-48 object-cover" src="{{ asset('images/product/' . $arrival->image_url) }}" alt="{{ $arrival->name }}">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">{{ $arrival->name }}</h3>
+                        <p class="text-sm text-gray-500">Price: {{ $arrival->price }}</p>
                     </div>
                 </a>
             @endforeach
         </div>
     </section>
-    {{-- End of Latest Arrivals --}}
 
-    {{-- Start of Our Brands --}}
-    <section class="px-14 my-12 py-10">
-        <h1 class="my-5 text-center text-xl font-bold">Our Brands</h1>
-        <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-4">
+    {{-- Brands Section --}}
+    <section class="px-14 my-16 py-10 bg-gray-100 rounded-lg">
+        <h1 class="text-3xl font-bold text-center mb-10">Our Brands</h1>
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-8">
             @foreach ($brands as $brand)
-                <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-                    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
-                    <p class="p-2 font-bold">{{$brand->name}}</p>
+                <a href="{{ route('user.viewbrand', $brand->id) }}" class="block text-center hover:shadow-lg transition duration-300">
+                    <img class="mx-auto h-20 w-20 object-contain" src="{{ asset('images/brand/' . $brand->photo) }}" alt="{{ $brand->name }}">
+                    <h3 class="text-lg font-semibold mt-4">{{ $brand->name }}</h3>
                 </a>
             @endforeach
-            @foreach ($brands as $brand)
-            <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-                <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
-                <p class="p-2 font-bold">{{$brand->name}}</p>
-            </a>
-        @endforeach      @foreach ($brands as $brand)
-        <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-            <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
-            <p class="p-2 font-bold">{{$brand->name}}</p>
-        </a>
-    @endforeach
-    @foreach ($brands as $brand)
-    <a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-        <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
-        <p class="p-2 font-bold">{{$brand->name}}</p>
-    </a>
-@endforeach
-@foreach ($brands as $brand)
-<a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
-    <p class="p-2 font-bold">{{$brand->name}}</p>
-</a>
-@endforeach
-@foreach ($brands as $brand)
-<a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
-    <p class="p-2 font-bold">{{$brand->name}}</p>
-</a>
-@endforeach
-@foreach ($brands as $brand)
-<a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
-    <p class="p-2 font-bold">{{$brand->name}}</p>
-</a>
-@endforeach
-@foreach ($brands as $brand)
-<a href="{{ route('user.viewbrand', $brand->id) }}" class="cursor-pointer shadow-2xl text-center">
-    <img class="mx-auto h-20 bg-cover " src="{{ asset('images/brand/' . $brand->photo) }}" alt="Brand">
-    <p class="p-2 font-bold">{{$brand->name}}</p>
-</a>
-@endforeach
         </div>
     </section>
-    {{-- End of Our Brands --}}
-
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

@@ -16,7 +16,11 @@
 
             <!-- Contact Information -->
             <div class="w-full lg:w-7/12 px-3">
-
+                <div style="width:100%;height:0;padding-bottom:178%;position:relative;"><iframe src="https://giphy.com/embed/oorYRC3dAGB6tlgIze" width="100%" height="25%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                </div>
+                <p>
+                    <a href="https://giphy.com/gifs/Rising-Gym-oorYRC3dAGB6tlgIze">via GIPHY</a>
+                </p>
             </div>
              <!-- Contact Form -->
              <div class="w-full lg:w-5/12 px-3 mb-12 lg:mb-0">
