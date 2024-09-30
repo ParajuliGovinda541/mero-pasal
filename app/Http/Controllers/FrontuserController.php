@@ -44,12 +44,12 @@ class FrontuserController extends Controller
 
     public function khalti()
     {
-        return view('user.khalti')
-    ;}
+        return view('user.khalti');
+    }
 
     public function index()
     {
-        $wishcounts=$this->wishcount();
+        $wishcounts = $this->wishcount();
         $itemsincart = $this->include();
         $products = Product::paginate(8);
         $categories = Category::all();
@@ -57,7 +57,7 @@ class FrontuserController extends Controller
         $contacts = Contact::all();
 
 
-        return view('user.index', compact('products', 'categories', 'itemsincart','wishcounts','brands', 'contacts'));
+        return view('user.index', compact('products', 'categories', 'itemsincart', 'wishcounts', 'brands', 'contacts'));
     }
 
 
@@ -76,17 +76,17 @@ class FrontuserController extends Controller
     public function about()
     {
         $itemsincart = $this->include();
-        $wishcounts=$this->wishcount();
-        return view('user.about',compact('itemsincart','wishcounts'));
+        $wishcounts = $this->wishcount();
+        return view('user.about', compact('itemsincart', 'wishcounts'));
     }
     public function viewproduct(Product $product)
 
     {
         $itemsincart = $this->include();
-        $wishcounts=$this->wishcount();
+        $wishcounts = $this->wishcount();
 
         $relatedproducts = Product::where('categories_id', $product->categories_id)->whereNot('id', $product->id)->get();
-        return view('user.viewproduct', compact('product', 'itemsincart', 'relatedproducts','wishcounts'));
+        return view('user.viewproduct', compact('product', 'itemsincart', 'relatedproducts', 'wishcounts'));
     }
 
 
@@ -125,31 +125,31 @@ class FrontuserController extends Controller
     }
 
     public function product(Request $request)
-{
-    $itemsincart = $this->include();
-    $wishcounts = $this->wishcount();
+    {
+        $itemsincart = $this->include();
+        $wishcounts = $this->wishcount();
 
-    $sortOptions = $request->input('sort', []);
+        $sortOptions = $request->input('sort', []);
 
-    $products = Product::query();
+        $products = Product::query();
 
-    if (in_array('price_high_to_low', $sortOptions)) {
-        $products->orderBy('price', 'desc');
+        if (in_array('price_high_to_low', $sortOptions)) {
+            $products->orderBy('price', 'desc');
+        }
+        if (in_array('price_low_to_high', $sortOptions)) {
+            $products->orderBy('price', 'asc');
+        }
+        if (in_array('name_a_to_z', $sortOptions)) {
+            $products->orderBy('product_name', 'asc');
+        }
+        if (in_array('name_z_to_a', $sortOptions)) {
+            $products->orderBy('product_name', 'desc');
+        }
+
+        $products = $products->paginate(8);
+
+        return view('user.product', compact('products', 'itemsincart', 'wishcounts'));
     }
-    if (in_array('price_low_to_high', $sortOptions)) {
-        $products->orderBy('price', 'asc');
-    }
-    if (in_array('name_a_to_z', $sortOptions)) {
-        $products->orderBy('product_name', 'asc');
-    }
-    if (in_array('name_z_to_a', $sortOptions)) {
-        $products->orderBy('product_name', 'desc');
-    }
-
-    $products = $products->paginate(8);
-
-    return view('user.product', compact('products', 'itemsincart', 'wishcounts'));
-}
 
 
 
@@ -162,9 +162,9 @@ class FrontuserController extends Controller
         $products = Product::where('categories_id', $id)->paginate(2);
         $categories = Category::all();
         $itemsincart = $this->include();
-        $wishcounts=$this->wishcount();
+        $wishcounts = $this->wishcount();
 
-        return view('user.viewcategory', compact('products', 'categories', 'itemsincart', 'category','wishcounts'));
+        return view('user.viewcategory', compact('products', 'categories', 'itemsincart', 'category', 'wishcounts'));
 
         // return response($product);
 
@@ -184,7 +184,7 @@ class FrontuserController extends Controller
     public function orderedproduct(Request $request)
     {
         //  dd($request->all());
-        $data=$request->toArray();
+        $data = $request->toArray();
         $currentDate = Carbon::now()->toDateString();
         $data['status'] = 'Pending';
         $data['date'] = $currentDate;
@@ -203,10 +203,10 @@ class FrontuserController extends Controller
         //    dd($data);
 
         // print_r($data);
-        $order=$data['data'];
-        $order['amount']=$totalprice;
-        $order['status']='Pending';
-        $order['cart_id']=implode(',', $ids);
+        $order = $data['data'];
+        $order['amount'] = $totalprice;
+        $order['status'] = 'Pending';
+        $order['cart_id'] = implode(',', $ids);
         $order['user_id'] = auth()->user()->id;
         $currentDate = Carbon::now()->toDateString();
         $order['date'] = $currentDate;
@@ -217,12 +217,12 @@ class FrontuserController extends Controller
         Order::create($order);
         Cart::whereIn('id', $ids)->update(['is_ordered' => true]);
 
-        $msg=[
-            'mailmessage'=> 'Your Order has Been Submitted'
+        $msg = [
+            'mailmessage' => 'Your Order has Been Submitted'
         ];
-        Mail::send('email.email',$msg, function($message){
+        Mail::send('email.email', $msg, function ($message) {
             $message->to(auth()->user()->email)
-            ->subject(' Order Requested');
+                ->subject(' Order Requested');
         });
 
 
@@ -230,16 +230,14 @@ class FrontuserController extends Controller
 
 
 
-        session()->flash('success','Product Order SucessFully');
+        session()->flash('success', 'Product Order SucessFully');
 
         return response()->json($data);
-
-
     }
 
     public function ordertable()
     {
-        $wishcounts=$this->wishcount();
+        $wishcounts = $this->wishcount();
         $itemsincart = $this->include();
         $orders = Order::where('user_id', auth()->user()->id)->get();
         $products = Product::all();
@@ -253,7 +251,7 @@ class FrontuserController extends Controller
             $order->carts = $carts;
         }
 
-        return view('user.orderedproduct', compact('itemsincart', 'orders', 'products','wishcounts'));
+        return view('user.orderedproduct', compact('itemsincart', 'orders', 'products', 'wishcounts'));
     }
 
     public function profileedit(Request $id)
@@ -265,31 +263,31 @@ class FrontuserController extends Controller
 
     public function checkout()
     {
-        $wishcounts=$this->wishcount();
+        $wishcounts = $this->wishcount();
         $itemsincart = $this->include();
         $carts = Cart::where('user_id', auth()->user()->id)->where('is_ordered', false)->get();
-        return view('user.checkout', compact('itemsincart', 'carts','wishcounts'));
+        return view('user.checkout', compact('itemsincart', 'carts', 'wishcounts'));
     }
 
     public function search(Request $request)
     {
         $itemsincart = $this->include();
-        $wishcounts=$this->wishcount();
+        $wishcounts = $this->wishcount();
         if ($request->search) {
             $searchTerm = $request->search;
 
             $searchproducts = Product::where(function ($query) use ($searchTerm) {
                 $query->where('product_name', 'LIKE', '%' . $searchTerm . '%')
-                      ->orWhere('description', 'LIKE', '%' . $searchTerm . '%')
-                      ->orWhere('price', 'LIKE', '%' . $searchTerm . '%')
-                      ->orWhereHas('categories', function ($query) use ($searchTerm) {
-                          $query->where('categories_name', 'LIKE', '%' . $searchTerm . '%');
-                      });
+                    ->orWhere('description', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('price', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhereHas('categories', function ($query) use ($searchTerm) {
+                        $query->where('categories_name', 'LIKE', '%' . $searchTerm . '%');
+                    });
             })
-            ->latest()
-            ->paginate(5);
+                ->latest()
+                ->paginate(5);
 
-            return view('user.search', compact('searchproducts','itemsincart','wishcounts'));
+            return view('user.search', compact('searchproducts', 'itemsincart', 'wishcounts'));
         } else {
             return redirect()->back()->with('message', 'Empty Search');
         }
@@ -298,9 +296,9 @@ class FrontuserController extends Controller
     public function brand()
     {
         $itemsincart = $this->include();
-        $wishcounts=$this->wishcount();
-        $brands= Brand::all();
-        return view('user.brand',compact('itemsincart','wishcounts','brands'));
+        $wishcounts = $this->wishcount();
+        $brands = Brand::all();
+        return view('user.brand', compact('itemsincart', 'wishcounts', 'brands'));
     }
     public function viewbrand($id)
 
@@ -310,20 +308,29 @@ class FrontuserController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $itemsincart = $this->include();
-        $wishcounts=$this->wishcount();
+        $wishcounts = $this->wishcount();
 
-        return view('user.viewbrand', compact('products', 'categories', 'itemsincart', 'category','wishcounts','brands'));
+        return view('user.viewbrand', compact('products', 'categories', 'itemsincart', 'category', 'wishcounts', 'brands'));
     }
 
-    public function blogs($id)
+    public function blogs()
     {
-        $blogs=Blog::orderBy('priority')->get();
-        $category = Category::find($id);
-        $products = Product::where('categories_id', $id)->paginate(2);
+        // Get blogs ordered by priority
+        $blogs = Blog::orderBy('priority')->get();
         $categories = Category::all();
         $brands = Brand::all();
+        // Include items in cart and wish count
         $itemsincart = $this->include();
-        $wishcounts=$this->wishcount();
-        return view('blog',compact('blogs'));
+        $wishcounts = $this->wishcount();
+
+        // Pass all the necessary data to the view
+        return view('user.blog', compact('blogs', 'categories', 'brands', 'itemsincart', 'wishcounts'));
+    }
+
+    public function viewblogs($id)
+    {
+        $blog = Blog::find($id);
+        $related = Blog::where('id', '!=', $id)->orderBy('blog_date', 'desc')->get();
+        return view('viewblogs', compact('blog', 'related'));
     }
 }

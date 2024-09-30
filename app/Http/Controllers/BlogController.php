@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -18,8 +19,8 @@ class BlogController extends Controller
      public function create()
      {
 
-
-         return view("admin.blogs.create");
+        $allcategory= Category::all();
+         return view("admin.blogs.create",compact('allcategory'));
      }
 
      public function store(Request $request)

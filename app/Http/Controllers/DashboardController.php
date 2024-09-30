@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Contact;
@@ -25,9 +26,8 @@ class DashboardController extends Controller
     $order= Order::count();
     $users= User::count();
     $brands = Brand::count();
+    $blogs = Blog::count();
     $totalNewOrders = Order::where('status', 'pending')->count(); // Assuming 'status' is used to track order status
-
-
     $orderdates = Order::orderBy('date','desc')->limit(40)->distinct()->pluck('date')->toArray();
     $orderdates = array_reverse($orderdates);
     $ordercounts = [];
@@ -47,7 +47,7 @@ class DashboardController extends Controller
     // dd($categories);
     // return view('admin.dashboard', compact());
 
-    return view('dashboard',compact('products','brands','categories','contacts','order','users','ordercounts','orderdates','totalNewOrders'));
+    return view('dashboard',compact('products','blogs','brands','categories','contacts','order','users','ordercounts','orderdates','totalNewOrders'));
     }
 
 }

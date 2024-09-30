@@ -44,6 +44,11 @@
             <p class="text-blue-600 font-semibold text-lg mb-2">Total Users</p>
             <h1 class="text-3xl font-bold text-gray-800">{{ $users }}</h1>
         </a>
+        {{-- Total blogs --}}
+        <a href="{{ route('admin.blogs.index') }}" class="bg-white border border-gray-200 rounded-lg shadow-lg p-6 text-center transition-transform transform hover:scale-105 hover:shadow-xl">
+            <p class="text-blue-600 font-semibold text-lg mb-2">Total Blogs</p>
+            <h1 class="text-3xl font-bold text-gray-800">{{ $blogs }}</h1>
+        </a>
     </div>
 
     <div class="flex items-center justify-between mb-8">

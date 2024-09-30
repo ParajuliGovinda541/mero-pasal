@@ -32,6 +32,8 @@
                         <a href="{{ route('admin.category.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Category</a>
                         <a href="{{ route('admin.brand.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Brand</a>
                         <a href="{{ route('admin.order.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Order</a>
+                        <a href="{{ route('admin.blogs.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Blogs</a>
+
                         <a href="{{ route('contact.index') }}" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Feedback</a>
                         <a href="#" class="p-2 rounded-lg transition-colors duration-300 hover:bg-gray-800">Settings</a>
                     </nav>

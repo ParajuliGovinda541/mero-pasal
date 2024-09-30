@@ -64,6 +64,10 @@
             <a href="{{ route('user.product') }}" class="hover:bg-teal-700 px-3 py-2 rounded-md">Products</a>
             <a href="{{ route('user.brand') }}" class="hover:bg-teal-700 px-3 py-2 rounded-md">Brands</a>
             <a href="{{ route('user.contact') }}" class="hover:bg-teal-700 px-3 py-2 rounded-md">Contacts</a>
+            <a href="{{ route('user.blog') }}" class="hover:bg-teal-700 px-3 py-2 rounded-md">Blogs</a>
+
+
+
         </div>
         <div class="relative md:flex items-center space-x-4 hidden">
             <form action="{{ route('user.search') }}" method="GET" role="search">

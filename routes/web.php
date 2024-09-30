@@ -78,9 +78,6 @@ Route::get('/user/recommendation', [FrontuserController::class, 'recommendation'
 Route::get('/user/viewproduct/{product}', [FrontuserController::class, 'viewproduct'])->name('user.viewproduct');
 
 Route::get('/user/search', [FrontuserController::class, 'search'])->name('user.search');
-
-
-
 Route::get('/user/khalti', [FrontuserController::class, 'khalti'])->name('user.khalti');
 
 
@@ -122,15 +119,14 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/user/viewcategory/{id}', [FrontuserController::class, 'viewcategory'])->name('user.viewcategory');
 Route::get('/user/viewbrand/{id}', [FrontuserController::class, 'viewbrand'])->name('user.viewbrand');
 
-
-
-
+Route::get('/user/blog',[FrontuserController::class,'blogs'])->name('user.blog');
+Route::get('/user/viewblogs/{id}',[FrontuserController::class,'viewblogs'])->name('user.viewblogs');
+// Route::get('/viewblogs/{id}',[PageController::class,'viewblogs'])->name('viewblogs');
 
 // route for admin side
 
 //route for cart deletion and order'
 Route::middleware(['auth','role:admin'])->group(function () {
-
     Route::get('/mycart/{id}/destroy', [FrontuserController::class, 'destroy'])->name('user.mycart.destroy');
     // route for user order store
     Route::post('/mycart/orderedproduct', [FrontuserController::class, 'orderedproduct'])->name('order.orderedproduct');
@@ -140,7 +136,6 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/checkout', [FrontuserController::class, 'checkout'])->name('user.checkout');
 
     // Route of category
-
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
     Route::post('/category', [CategoryController::class, 'store'])->name('admin.category.store');
@@ -148,14 +143,12 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::post('/category/{id}/update', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::get('/category/{id}/destroy', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
 
-
     Route::get('/brand', [BrandController::class, 'index'])->name('admin.brand.index');
     Route::get('/brand/create', [BrandController::class, 'create'])->name('admin.brand.create');
     Route::post('/brand', [BrandController::class, 'store'])->name('admin.brand.store');
     Route::get('/brand/{id}/edit', [BrandController::class, 'edit'])->name('admin.brand.edit');
     Route::post('/brand/{id}/update', [BrandController::class, 'update'])->name('admin.brand.update');
     Route::get('/brand/{id}/destroy', [BrandController::class, 'destroy'])->name('admin.brand.destroy');
-
 
     // end of Route category
 
@@ -200,9 +193,6 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/order/status/{id}/{status}', [OrderController::class, 'status'])->name('admin.order.status');
 
 
-
-
-
     Route::get('/blogs',[BlogController::class,'index'])->name('admin.blogs.index');
     Route::get('/blogs/create',[BlogController::class,'create'])->name('admin.blogs.create');
     Route::post('/blogs/store',[BlogController::class,'store'])->name('admin.blogs.store');
@@ -214,13 +204,6 @@ Route::middleware(['auth','role:admin'])->group(function () {
 
 
 });
-
-
-
-
-
-
-
 
 
 
