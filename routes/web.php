@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
@@ -158,6 +159,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
 
     // end of Route category
 
+
     // Route of product
 
     Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');
@@ -196,6 +198,18 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/order/{id}/details', [OrderController::class, 'details'])->name('admin.order.details');
     Route::post('/order/{id}/update', [OrderController::class, 'update'])->name('admin.order.update');
     Route::get('/order/status/{id}/{status}', [OrderController::class, 'status'])->name('admin.order.status');
+
+
+
+
+
+    Route::get('/blogs',[BlogController::class,'index'])->name('admin.blogs.index');
+    Route::get('/blogs/create',[BlogController::class,'create'])->name('admin.blogs.create');
+    Route::post('/blogs/store',[BlogController::class,'store'])->name('admin.blogs.store');
+    Route::get('/blogs/{id}/edit',[BlogController::class,'edit'])->name('admin.blogs.edit');
+    Route::post('/blogs/{id}/update',[BlogController::class,'update'])->name('admin.blogs.update');
+    Route::delete('/blogs/destroy',[BlogController::class,'destroy'])->name('admin.blogs.destroy');
+
 
 
 

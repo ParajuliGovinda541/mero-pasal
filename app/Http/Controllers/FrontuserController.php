@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
@@ -38,6 +39,7 @@ class FrontuserController extends Controller
             return Cart::where('user_id', auth()->user()->id)->where('is_ordered', false)->count();
         }
     }
+
 
 
     public function khalti()
@@ -311,5 +313,17 @@ class FrontuserController extends Controller
         $wishcounts=$this->wishcount();
 
         return view('user.viewbrand', compact('products', 'categories', 'itemsincart', 'category','wishcounts','brands'));
+    }
+
+    public function blogs($id)
+    {
+        $blogs=Blog::orderBy('priority')->get();
+        $category = Category::find($id);
+        $products = Product::where('categories_id', $id)->paginate(2);
+        $categories = Category::all();
+        $brands = Brand::all();
+        $itemsincart = $this->include();
+        $wishcounts=$this->wishcount();
+        return view('blog',compact('blogs'));
     }
 }
